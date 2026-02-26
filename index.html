@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licitus Bot | Automação de Lances</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-gavel text-brand-600 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">Licitus<span class="text-brand-600">Bot</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-slate-600 hover:text-brand-600 transition">Início</a>
+                    <a href="#recursos" class="text-slate-600 hover:text-brand-600 transition">Recursos</a>
+                    <a href="#documentacao" class="text-slate-600 hover:text-brand-600 transition font-medium">Docs Técnicos</a>
+                </div>
+                <div>
+                    <a href="#contato" class="bg-brand-600 hover:bg-brand-500 text-white px-5 py-2 rounded-full font-medium transition shadow-lg shadow-brand-500/30">Solicitar Acesso</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Landing Page) -->
+    <section id="inicio" class="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-b from-slate-100 to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-900 text-sm font-semibold mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-brand-500"></span>
+                    O Sniper Definitivo para Compras.gov
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+                    Vença licitações enquanto você <span class="text-brand-600">toma café.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 mb-10">
+                    O Licitus Bot monitora pregões eletrônicos em tempo real e cobre lances dos concorrentes em milissegundos, respeitando sua margem de lucro de forma estrita e segura.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-lg font-bold text-lg transition shadow-xl">
+                        Ver Demonstração
+                    </button>
+                    <a href="#documentacao" class="bg-white border-2 border-slate-200 hover:border-slate-300 text-slate-700 px-8 py-3 rounded-lg font-bold text-lg transition">
+                        Ler Documentação Técnica
+                    </a>
+                </div>
+            </div>
+
+            <!-- Preview Dashboard Image -->
+            <div class="mt-16 relative max-w-5xl mx-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10"></div>
+                <div class="bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 px-4 py-3 flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-slate-400 text-xs ml-4 font-mono">licitusbot.com/dashboard</span>
+                    </div>
+                    <div class="p-8 bg-slate-50 flex items-center justify-center min-h-[400px]">
+                        <div class="text-center text-slate-400 border-2 border-dashed border-slate-300 rounded-lg p-12 w-full">
+                            <i class="fa-solid fa-chart-line text-4xl mb-4 text-brand-500"></i>
+                            <p class="text-lg"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="recursos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Por que escolher o Licitus Bot?</h2>
+                <p class="mt-4 text-slate-600">Desenhado para performance, construído para a vitória.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mb-4 text-brand-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Velocidade Sniper</h3>
+                    <p class="text-slate-600">Cobre o lance do adversário em menos de 300ms. Não dê chance para o erro humano.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mb-4 text-brand-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Proteção de Margem</h3>
+                    <p class="text-slate-600">Configure seu custo e lucro mínimo. O bot para automaticamente se o preço ficar inviável.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center mb-4 text-brand-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Automação 100%</h3>
+                    <p class="text-slate-600">Acesse via nuvem. Desligue o computador e deixe o robô trabalhar pelo seu negócio 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Docs Section (PRD, NPRD, MVP, Logic) -->
+    <section id="documentacao" class="py-20 bg-slate-900 text-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Documentação do Projeto</h2>
+                <p class="text-slate-400">Visão técnica e de negócios para investidores, desenvolvedores e stakeholders.</p>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="flex overflow-x-auto border-b border-slate-700 mb-8 hide-scrollbar">
+                <button onclick="openTab(event, 'prd')" class="tab-btn active px-6 py-3 text-sm font-medium text-brand-400 border-b-2 border-brand-500 whitespace-nowrap">PRD (Produto)</button>
+                <button onclick="openTab(event, 'nprd')" class="tab-btn px-6 py-3 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-slate-200 whitespace-nowrap">N-PRD (Arquitetura)</button>
+                <button onclick="openTab(event, 'mvp')" class="tab-btn px-6 py-3 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-slate-200 whitespace-nowrap">Escopo MVP</button>
+                <button onclick="openTab(event, 'logica')" class="tab-btn px-6 py-3 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-slate-200 whitespace-nowrap">Lógica / Fluxo</button>
+            </div>
+
+            <!-- Tabs Content -->
+            <div class="bg-slate-800 rounded-xl p-6 lg:p-10 border border-slate-700 shadow-2xl">
+                
+                <!-- PRD -->
+                <div id="prd" class="tab-content active">
+                    <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Product Requirements Document (PRD)</h3>
+                    
+                    <div class="space-y-6 text-sm">
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">1. Visão Geral</h4>
+                            <p>O <strong>Licitus Bot</strong> é uma plataforma SaaS B2B que automatiza a participação em pregões eletrônicos. Seu objetivo é eliminar a perda de licitações por lentidão humana, garantindo o melhor preço possível dentro da margem de lucro estipulada pelo usuário.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">2. Problema a ser resolvido</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Empresas perdem pregões na fase de "tempo randômico" ou em disputas acirradas por não conseguirem digitar e enviar lances rápido o suficiente.</li>
+                                <li>Erro humano ao calcular a margem durante o calor da disputa, resultando em lances abaixo do custo (prejuízo).</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">3. Público-Alvo</h4>
+                            <p>Pequenas e Médias Empresas (PMEs) que fornecem para o Governo Federal via portal Compras.gov.br e participam de licitações de alta concorrência.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">4. Funcionalidades Core (User Stories)</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Como usuário, quero cadastrar minha margem mínima para que o bot pare de dar lances e não me gere prejuízo.</li>
+                                <li>Como usuário, quero definir um "decremento" (ex: cobrir a oferta em R$ 0,05) para otimizar meu lucro.</li>
+                                <li>Como usuário, quero um dashboard para acompanhar os itens que estou ganhando e perdendo em tempo real.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NPRD -->
+                <div id="nprd" class="tab-content">
+                    <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Non-Product Requirements (N-PRD) & Arquitetura</h3>
+                    
+                    <div class="space-y-6 text-sm">
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">1. Requisitos de Desempenho</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>Latência:</strong> O tempo de resposta entre a leitura de um novo lance concorrente e o envio da contraproposta deve ser inferior a 500ms.</li>
+                                <li><strong>Disponibilidade:</strong> Uptime de 99.9% durante o horário comercial (08h às 18h), período crítico de pregões.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">2. Requisitos de Segurança</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>Criptografia:</strong> As credenciais do usuário (Gov.br) devem ser armazenadas com criptografia AES-256 no banco de dados.</li>
+                                <li><strong>Conexão:</strong> Toda a comunicação cliente-servidor deve ocorrer via TLS 1.3 (HTTPS).</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">3. Requisitos de Conformidade Legal</h4>
+                            <p>O bot não pode sobrecarregar os servidores do governo. Deve implementar "rate limiting" (ex: requisições a cada X segundos baseados na regra do portal) para não caracterizar ataque de negação de serviço (DDoS) ou fraude em licitação.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-brand-400 font-bold mb-2 uppercase tracking-wide">4. Stack Tecnológica Sugerida</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>Backend/Bot Worker:</strong> Python (Selenium/Playwright para scraping complexo ou HTTPX para chamadas de API nativas).</li>
+                                <li><strong>Frontend (Dashboard):</strong> React.js ou Vue.js com TailwindCSS.</li>
+                                <li><strong>Banco de Dados:</strong> PostgreSQL para dados relacionais, Redis para fila de lances em tempo real (Celery/RabbitMQ).</li>
+                                <li><strong>Infraestrutura:</strong> AWS (EC2/Fargate) com IPs rotativos (Proxies) se necessário.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MVP -->
+                <div id="mvp" class="tab-content">
+                    <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Escopo do MVP (Minimum Viable Product)</h3>
+                    
+                    <div class="space-y-6 text-sm">
+                        <div class="bg-brand-900/30 border border-brand-500/30 p-4 rounded-lg">
+                            <p class="text-brand-100"><strong>Objetivo do MVP:</strong> Validar se a tecnologia consegue autenticar, ler o menor preço e enviar um lance válido mais rápido que um humano, apenas no portal mais popular (Compras.gov.br).</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-green-400 font-bold mb-2 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                    O que ENTRA no MVP
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                                    <li>Suporte exclusivo ao portal Compras.gov.br.</li>
+                                    <li>Modo de disputa: Apenas "Aberto".</li>
+                                    <li>Estratégia de Lance Única: Cobrir o primeiro colocado por um valor fixo (ex: R$ 0,01 a menos).</li>
+                                    <li>Cadastro simples de item com: Número do Pregão, Item, Valor Limite Mínimo.</li>
+                                    <li>Botão de "Start/Stop" manual por item.</li>
+                                    <li>Script rodando localmente (Desktop App ou CLI em Python) para evitar custos iniciais com servidores em nuvem.</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-red-400 font-bold mb-2 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                                    O que FICA DE FORA (Backlog V2)
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                                    <li>Suporte a outros portais (Licitações-e, BLL, BEC).</li>
+                                    <li>Modo de disputa "Aberto e Fechado".</li>
+                                    <li>Estratégias avançadas (Lance percentual, Sniper de último segundo).</li>
+                                    <li>Plataforma SaaS 100% em nuvem (V1 será instalável ou script via terminal).</li>
+                                    <li>Envio automático de documentos de habilitação.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logica -->
+                <div id="logica" class="tab-content">
+                    <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Lógica e Fluxo de Decisão (Algoritmo)</h3>
+                    
+                    <div class="space-y-6 text-sm">
+                        <p class="mb-4">Este é o fluxograma interno do Worker (robô) que executa a automação dos lances.</p>
+
+                        <div class="bg-slate-900 p-6 rounded-lg font-mono text-xs overflow-x-auto border border-slate-700">
+<pre class="text-green-400">
+[INÍCIO]
+  |
+  +-- 1. Autenticar no Portal (Gov.br)
+  |      - Verifica sucesso. Se erro -> Alerta Usuário e Para.
+  |
+  +-- 2. Selecionar Pregão Ativo e Item (Fornecido pelo DB)
+  |
+  +-- 3. Carregar Parâmetros:
+  |      [VALOR_MINIMO_ACEITAVEL] = ex: R$ 100,00
+  |      [DECREMENTO] = ex: R$ 0,05
+  |
+  +-- [LOOP DE MONITORAMENTO] <--+
+         |                       |
+         +-- Ler Tela/API: Qual o atual [MENOR_LANCE]?
+         |
+         +-- Condição A: O [MENOR_LANCE] é MEU?
+         |      - SIM: Aguardar 2s. Retornar ao LOOP.
+         |      - NÃO: Seguir em frente.
+         |
+         +-- Condição B: O status do item é "ABERTO" para lances?
+         |      - NÃO: Sair do LOOP (Pregão pausado ou encerrado).
+         |      - SIM: Seguir em frente.
+         |
+         +-- Calcular: [NOVO_LANCE] = [MENOR_LANCE] - [DECREMENTO]
+         |
+         +-- Condição C: [NOVO_LANCE] >= [VALOR_MINIMO_ACEITAVEL]?
+         |      - NÃO: Bati na margem! Parar de dar lances. Notificar Usuário.
+         |      - SIM: Preparar envio!
+         |
+         +-- AÇÃO: Enviar Requisição HTTP POST de Lance com [NOVO_LANCE]
+         |
+         +-- Verificar resposta do servidor (Sucesso/Recusado)
+         |
+         +-- Aguardar X segundos (evitar rate limit).
+         |
+         +-----------------------+ (Reinicia o Loop)
+</pre>
+                        </div>
+                        <p class="text-slate-400 italic text-xs mt-2">* Nota: Esta lógica é a base do MVP. Sistemas avançados incluem tratativas assíncronas via WebSockets para evitar polling excessivo.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-gavel text-brand-600 text-xl"></i>
+                <span class="font-bold text-lg tracking-tight text-white">Licitus<span class="text-brand-600">Bot</span></span>
+            </div>
+            <p class="text-sm">© 2026 Licitus Bot. Todos os direitos reservados. Não possui afiliação com o Governo Federal.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tab Logic Script -->
+    <script>
+        function openTab(evt, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Get all elements with class="tab-btn" and remove the active styling
+            var tablinks = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("text-brand-400", "border-brand-500");
+                tablinks[i].classList.add("text-slate-400", "border-transparent");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.remove("text-slate-400", "border-transparent");
+            evt.currentTarget.classList.add("text-brand-400", "border-brand-500");
+        }
+    </script>
+</body>
+</html>
